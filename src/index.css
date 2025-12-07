@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+  /* Float animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  @keyframes float-delayed {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-25px); }
+  }
+
+  /* Confetti falling */
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0.3; }
+  }
+
+  /* Balloon floating */
+  @keyframes balloon-float {
+    0%,100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+  }
+
+  /* Heart float */
+  @keyframes heart-float {
+    0% { transform: translateY(100vh) translateX(0); }
+    50% { transform: translateY(50vh) translateX(10px); }
+    100% { transform: translateY(-10vh) translateX(-10px); }
+  }
+
+  /* Fade in */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+ /* ============================
+   UPDATED BEAUTIFUL VINYL BUTTON
+============================ */
+
+.music-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+
+  /* Softer glowing rim */
+  background: radial-gradient(circle at 30% 30%, #1a1a1a, #000 75%);
+  border: 3px solid #ffb6d3;
+  box-shadow:
+    0 0 12px rgba(255, 180, 210, 0.6),
+    inset 0 0 12px rgba(255, 255, 255, 0.06),
+    inset 0 0 25px rgba(0, 0, 0, 0.7);
+
+  transition: 0.25s ease;
+}
+
+/* Smaller black disc with grooves */
+.music-btn::before {
+  content: "";
+  position: absolute;
+  inset: 8px;      /* made disc smaller */
+  border-radius: 50%;
+  background: repeating-radial-gradient(
+    circle,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.5;
+}
+
+/* Glossy highlight */
+.music-btn::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 13px;
+  width: 26px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
+  border-radius: 50%;
+  transform: rotate(-25deg);
+  opacity: 0.8;
+}
+
+/* Center label — softer rose / cream tone */
+.record-center {
+  width: 13px;     /* slightly smaller */
+  height: 13px;
+  background: #ffd6e7;  /* soft rose-cream */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 6px rgba(255, 200, 220, 0.8),
+    inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Spin animation */
+.spin {
+  animation: recordSpin 2.4s linear infinite;
+}
+
+@keyframes recordSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Hover wobble */
+.music-btn:hover {
+  transform: scale(1.08) rotate(-3deg);
+  box-shadow:
+    0 0 18px rgba(255, 180, 210, 0.9),
+    inset 0 0 14px rgba(255, 255, 255, 0.08);
+}
+
+
+
+@keyframes floatingNote {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-40px) rotate(12deg); opacity: 0; }
+}
+
+.animate-floating-note {
+  animation: floatingNote 1.8s ease-out forwards;
+  text-shadow: 0 0 6px rgba(255, 200, 255, 0.8);
+}
+
+
+  /* === Reel Film Styling === */
+  @keyframes timelineJitter {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(1px); }
+  }
+
+  @keyframes timelineFlicker {
+    0% { opacity: 0.96; }
+    50% { opacity: 1; }
+    100% { opacity: 0.97; }
+  }
+
+  .timeline-projector-glow {
+    background: radial-gradient(circle at top,
+      rgba(255,255,255,0.15),
+      rgba(0,0,0,0.9)
+    );
+    box-shadow:
+      0 0 40px rgba(0, 0, 0, 0.6),
+      0 0 80px rgba(255, 192, 203, 0.25);
+    animation: timelineFlicker 1.4s ease-in-out infinite;
+  }
+
+  .timeline-photo {
+    width: 8rem;
+    height: 10rem;
+    background: #111;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    animation: timelineJitter 0.4s ease-in-out infinite;
+  }
+
+  .timeline-frame {
+    min-width: 8rem;
+  }
+
+  .timeline-caption {
+    text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+  }
+
+  .timeline-sprockets-top,
+  .timeline-sprockets-bottom {
+    position: absolute;
+    left: 0; right: 0;
+    height: 14px;
+    background: repeating-linear-gradient(
+      to right,
+      #111 0px,
+      #111 10px,
+      #f9c2d2 10px,
+      #f9c2d2 22px
+    );
+    opacity: .9;
+    z-index: 5;
+  }
+
+  .timeline-sprockets-top { top: 0; border-radius: 12px 12px 0 0; }
+  .timeline-sprockets-bottom { bottom: 0; border-radius: 0 0 12px 12px; }
+
+  /* Critical: prevent smooth scrolling */
+  .timeline-scroll {
+    scroll-behavior: auto !important;
+  }
+
+  /* Utility animations */
+  .animate-heartbeat { animation: heartbeat 1.4s ease-in-out infinite; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-delayed { animation: float-delayed 7s ease-in-out infinite; }
+  .animate-confetti-fall { animation: confetti-fall 5s linear infinite; }
+  .animate-balloon-float { animation: balloon-float 4s ease-in-out infinite; }
+  .animate-heart-float { animation: heart-float 8s ease-in-out infinite; }
+  .fade-in { animation: fade-in 0.8s ease forwards; }
+
+  .hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* === CINEMATIC FILM EFFECTS === */
+
+.timeline-projector-glow {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+.timeline-projector-glow::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 241, 220, 0.25),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: -1;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+/* Film Grain */
+.film-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("https://i.imgur.com/9Q0W1.jpg"); /* subtle grain texture */
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  animation: grainMove 0.4s steps(4) infinite;
+}
+
+@keyframes grainMove {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-1px, 1px); }
+  50% { transform: translate(1px, -1px); }
+  75% { transform: translate(-1px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Soft Film Jitter */
+.timeline-photo {
+  animation: jitter 0.25s infinite alternate ease-in-out;
+}
+
+@keyframes jitter {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(1px) scale(1.01); }
+}
+
+/* Flicker */
+.timeline-frame {
+  animation: flicker 1.5s infinite ease-in-out;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.97; }
+  100% { opacity: 1; }
+}
+
+/* Lightbox Animation */
+.lightbox-fade {
+  animation: lbFade 0.25s ease-out forwards;
+}
+
+@keyframes lbFade {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes filmGrain {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.18; }
+}
+
+.film-grain {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+  animation: filmGrain 1.2s steps(2) infinite;
+}
+
+
+}
